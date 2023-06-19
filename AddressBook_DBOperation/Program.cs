@@ -20,12 +20,15 @@ internal class Program
 
         DBOPeration dBOPeration = new DBOPeration(@"Data Source = LAPTOP-9639UT7T; Database = addressbook_service_ADO; Integrated Security = True;");
 
-        /*foreach(Contact contact in contacts)
+        foreach (Contact contact in contacts)
         {
             dBOPeration.AddContact(contact);
-        }*/
+        }
 
         dBOPeration.UpdateContact("Chinchwad", 3);
+        dBOPeration.ReadContact();
+        dBOPeration.DeleteContact(5);
+        dBOPeration.DeleteContact(2);
         dBOPeration.ReadContact();
     }
 }

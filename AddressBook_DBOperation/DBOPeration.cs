@@ -37,7 +37,7 @@ public class DBOPeration
         connection.Close();
     }
 
-    public void UpdateContact(string data, int Id)
+    public void UpdateContact(string data, int id)
     {
         connection = new SqlConnection(connectionString);
 
@@ -45,7 +45,7 @@ public class DBOPeration
         string updateQuery = @"update address set city = @newCityName where addressId = @Id";
         SqlCommand updateCommand = new SqlCommand(updateQuery,connection);
         updateCommand.Parameters.AddWithValue("@newCityName", data);
-        updateCommand.Parameters.AddWithValue("@Id", Id);
+        updateCommand.Parameters.AddWithValue("@Id", id);
 
         updateCommand.ExecuteNonQuery();
 
@@ -76,6 +76,17 @@ public class DBOPeration
             Console.WriteLine(contact);
         }
 
+        connection.Close();
+    }
+
+    public void DeleteContact(int id)
+    {
+        connection = new SqlConnection (connectionString);
+        connection.Open();
+        string deleteQuery = @"delete contact where contactId = @Id";
+        SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection);
+        deleteCommand.Parameters.AddWithValue("@Id", id);
+        deleteCommand.ExecuteNonQuery();
         connection.Close();
     }
 }
