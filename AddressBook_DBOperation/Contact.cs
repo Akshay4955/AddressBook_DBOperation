@@ -14,6 +14,10 @@ public class Contact
     public string PhoneNumber { get; set; }
     public string Email { get; set; }
 
+    public Contact()
+    {
+    }
+
     public Contact(string firstName, string lastName, string address, string city, string state, string zipcode, string phoneNumber, string email)
     {
         FirstName = firstName;
@@ -26,4 +30,8 @@ public class Contact
         Email = email;
     }
 
+    public override string ToString()
+    {
+        return $"{FirstName} {LastName} {Address} {City} {State} {Zipcode} {PhoneNumber} {Email}";
+    }
 }

@@ -26,5 +26,6 @@ internal class Program
         }*/
 
         dBOPeration.UpdateContact("Chinchwad", 3);
+        dBOPeration.ReadContact();
     }
 }

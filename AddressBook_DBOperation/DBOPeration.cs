@@ -51,4 +51,31 @@ public class DBOPeration
 
         connection.Close();
     }
+
+    public void ReadContact()
+    {
+        connection = new SqlConnection(connectionString);
+
+        connection.Open();
+        string readQuery = @"select * from contact inner join address on contact.addressId = address.addressId";
+        SqlCommand readCommand = new SqlCommand(readQuery,connection);
+        SqlDataReader reader = readCommand.ExecuteReader();
+
+        while (reader.Read())
+        {
+            Contact contact = new Contact();
+            contact.FirstName = (string) reader["firstName"];
+            contact.LastName = (string)reader["lastName"];
+            contact.Address = (string)reader["address"];
+            contact.City = (string)reader["city"];
+            contact.State = (string)reader["state"];
+            contact.Zipcode = reader["zip"].ToString();
+            contact.PhoneNumber = (string)reader["phoneNumber"];
+            contact.Email = (string)reader["email"];
+
+            Console.WriteLine(contact);
+        }
+
+        connection.Close();
+    }
 }
