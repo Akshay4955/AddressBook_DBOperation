@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Net;
 
 namespace AddressBook_DBOperation;
@@ -32,6 +33,21 @@ public class DBOPeration
         insertCommand.Parameters.AddWithValue("@zip", contact.Zipcode);
 
         insertCommand.ExecuteNonQuery();
+
+        connection.Close();
+    }
+
+    public void UpdateContact(string data, int Id)
+    {
+        connection = new SqlConnection(connectionString);
+
+        connection.Open();
+        string updateQuery = @"update address set city = @newCityName where addressId = @Id";
+        SqlCommand updateCommand = new SqlCommand(updateQuery,connection);
+        updateCommand.Parameters.AddWithValue("@newCityName", data);
+        updateCommand.Parameters.AddWithValue("@Id", Id);
+
+        updateCommand.ExecuteNonQuery();
 
         connection.Close();
     }
